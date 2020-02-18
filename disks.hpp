@@ -168,7 +168,24 @@ sorted_disks sort_lawnmower(const disk_state& before) {
   // statement, and then delete these comments.
   // check that the input is in alternating format
   assert(before.is_alternating());
-
+  //Return after_ state along with the swap count
+  // n/2 times, so n=4 so it should iterate 2 times 
+  disk_state after = before;
+  int swap_count_after = 0;
+  while(!after.is_sorted()){
+  for(int i = 0; i < after.total_count()-1; i++){
+    if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
+      after.swap(i);
+      swap_count_after++;
+    }
+  }
+  for(int i = after.total_count()-2; i > 0; i--){
+    if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
+      after.swap(i);
+      swap_count_after++;
+    }
+  }
+  }
   // TODO
-  return sorted_disks(before, 0);
+  return sorted_disks(after, swap_count_after);
 }
