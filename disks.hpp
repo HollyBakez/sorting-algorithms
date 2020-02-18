@@ -117,7 +117,12 @@ public:
   bool is_sorted() const {
     // TODO: Write code for this function, including rewriting the return
     // statement, and then delete these comments.
-   return false;
+    for(int i = 0; i < light_count(); i++){
+      if(_colors[i] != DISK_LIGHT){
+        return false;
+      }
+    }
+   return true;
   }
 };
 
