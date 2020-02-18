@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 // disks.hpp
 //
-// Definitions for two algorithms that each solve the 
+// Definitions for two algorithms that each solve the
 // alternating disks problem.
 //
-// As provided, this header has four functions marked with 
+// As provided, this header has four functions marked with
 // TODO comments.
-// You need to write in your own implementation of these 
+// You need to write in your own implementation of these
 // functions.
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -29,6 +29,7 @@ private:
 
 public:
 
+  //constructor to build row of disks with alternating light/dark disks
   disk_state(size_t light_count)
     : _colors(light_count * 2, DISK_LIGHT) {
 
@@ -65,6 +66,7 @@ public:
     return _colors[index];
   }
 
+  //swaps the given disk with the disk to the right
   void swap(size_t left_index) {
     assert(is_index(left_index));
     auto right_index = left_index + 1;
@@ -97,7 +99,16 @@ public:
   bool is_alternating() const {
     // TODO: Write code for this function, including rewriting the return
     // statement, and then delete these comments.
-    return false;
+    // B/C of definition at top, return false if the first disk is dark
+    if (_colors[0] == DISK_DARK) return false;
+
+    for (int i = 0; i < _colors.size() - 1; ++i) {
+      if (_colors[i] == DISK_LIGHT && _colors[i+1] == DISK_LIGHT)
+        return false;
+      else if (_colors[i] == DISK_DARK && _colors[i+1] == DISK_DARK)
+        return false;
+    }
+    return true;
   }
 
   // Return true when this disk_state is fully sorted, with all light disks
@@ -140,9 +151,9 @@ sorted_disks sort_left_to_right(const disk_state& before) {
   // TODO: Write code for this function, including rewriting the return
   // statement, and then delete these comments.
 
-  // check that the input is in alternating format  
+  // check that the input is in alternating format
   assert(before.is_alternating());
-  
+
   return sorted_disks(before, 0);
 }
 
