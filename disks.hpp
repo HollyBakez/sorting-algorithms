@@ -97,8 +97,6 @@ public:
   // that the first disk at index 0 is light, the second disk at index 1
   // is dark, and so on for the entire row of disks.
   bool is_alternating() const {
-    // TODO: Write code for this function, including rewriting the return
-    // statement, and then delete these comments.
     // B/C of definition at top, return false if the first disk is dark
     if (_colors[0] == DISK_DARK) return false;
 
@@ -115,9 +113,10 @@ public:
   // on the left (low indices) and all dark disks on the right (high
   // indices).
   bool is_sorted() const {
-    // TODO: Write code for this function, including rewriting the return
-    // statement, and then delete these comments.
+    // Checks the light disks on the left side
+    // If all light disks are accounted, then disks are sorted
     for(int i = 0; i < light_count(); i++){
+      // if not all light disks are counted then it is not sorted
       if(_colors[i] != DISK_LIGHT){
         return false;
       }
@@ -173,21 +172,22 @@ sorted_disks sort_left_to_right(const disk_state& before) {
 
 // Algorithm that sorts disks using the lawnmower algorithm.
 sorted_disks sort_lawnmower(const disk_state& before) {
-  // TODO: Write code for this function, including rewriting the return
-  // statement, and then delete these comments.
   // check that the input is in alternating format
   assert(before.is_alternating());
   //Return after_ state along with the swap count
-  // n/2 times, so n=4 so it should iterate 2 times 
+  // creating a disk state for after sorting by lawnmower
   disk_state after = before;
   int swap_count_after = 0;
+  // continues to swap until sorted
   while(!after.is_sorted()){
+  // swaps disks from left to right
   for(int i = 0; i < after.total_count()-1; i++){
     if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
       after.swap(i);
       swap_count_after++;
     }
   }
+  // swaps disks from right to left
   for(int i = after.total_count()-2; i > 0; i--){
     if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
       after.swap(i);
@@ -195,6 +195,5 @@ sorted_disks sort_lawnmower(const disk_state& before) {
     }
   }
   }
-  // TODO
   return sorted_disks(after, swap_count_after);
 }
