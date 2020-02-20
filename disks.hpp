@@ -181,19 +181,20 @@ sorted_disks sort_lawnmower(const disk_state& before) {
  // The lawnmower method to swap is repeated n/2 times
   for(int i = 0; i < after.light_count()/2; i++){
   // swaps disks from left to right
-  for(int i = 0; i < after.total_count()-1; i++){
-    if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
-      after.swap(i);
-      swap_count_after++;
+    for(int i = 0; i < after.total_count()-1; i++){
+      if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
+        after.swap(i);
+        swap_count_after++;
+      }
     }
-  }
   // swaps disks from right to left
-  for(int i = after.total_count()-2; i > 0; i--){
-    if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
-      after.swap(i);
-      swap_count_after++;
+    for(int i = after.total_count()-2; i > 0; i--){
+      if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
+        after.swap(i);
+        swap_count_after++;
+      }
     }
   }
-  }
+  
   return sorted_disks(after, swap_count_after);
 }
