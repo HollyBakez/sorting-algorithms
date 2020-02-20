@@ -159,7 +159,7 @@ sorted_disks sort_left_to_right(const disk_state& before) {
   disk_state temp = before;
 
   unsigned count = 0;
-  while (!temp.is_sorted()) {
+  for (int i = 0; i < temp.light_count(); i++) {
     for (int i = 0; i < temp.total_count() - 1; ++i) {
       if (temp.get(i) == DISK_DARK && temp.get(i+1) == DISK_LIGHT) {
         temp.swap(i);
@@ -178,7 +178,7 @@ sorted_disks sort_lawnmower(const disk_state& before) {
   // check that the input is in alternating format
   assert(before.is_alternating());
   //Return after_ state along with the swap count
-  // n/2 times, so n=4 so it should iterate 2 times 
+  // n/2 times, so n=4 so it should iterate 2 times
   disk_state after = before;
   int swap_count_after = 0;
   while(!after.is_sorted()){
