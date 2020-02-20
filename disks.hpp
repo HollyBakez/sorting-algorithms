@@ -178,8 +178,8 @@ sorted_disks sort_lawnmower(const disk_state& before) {
   // creating a disk state for after sorting by lawnmower
   disk_state after = before;
   int swap_count_after = 0;
-  // continues to swap until sorted
-  while(!after.is_sorted()){
+ // The lawnmower method to swap is repeated n/2 times
+  for(int i = 0; i < after.light_count()/2; i++){
   // swaps disks from left to right
   for(int i = 0; i < after.total_count()-1; i++){
     if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
