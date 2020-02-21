@@ -184,6 +184,7 @@ sorted_disks sort_lawnmower(const disk_state& before) {
  // The lawnmower method to swap is repeated n/2 times
   for(int i = 0; i < after.light_count()/2; i++){
   // swaps disks from left to right
+<<<<<<< HEAD
     for(int i = 0; i < after.total_count()-1; i++){
       // n = 8
       // 0, 1, 2 ,3 ,4, 5, 6,7 
@@ -194,8 +195,16 @@ sorted_disks sort_lawnmower(const disk_state& before) {
           swap_count_after++;
         }
       }
+=======
+  for(int i = 0; i < after.total_count()-1; i++){
+    if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
+      after.swap(i);
+      swap_count_after++;
+>>>>>>> parent of 5b44277... small fix
     }
+  }
   // swaps disks from right to left
+<<<<<<< HEAD
     for(int i = after.total_count()-2; i > 0; i--){
 
       if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
@@ -203,8 +212,14 @@ sorted_disks sort_lawnmower(const disk_state& before) {
         swap_count_after++;
       }
 
+=======
+  for(int i = after.total_count()-2; i > 0; i--){
+    if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
+      after.swap(i);
+      swap_count_after++;
+>>>>>>> parent of 5b44277... small fix
     }
   }
-  
+  }
   return sorted_disks(after, swap_count_after);
 }
