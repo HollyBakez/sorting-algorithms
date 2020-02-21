@@ -101,14 +101,12 @@ public:
     if (_colors[0] == DISK_DARK) return false;
 
     for (int i = 0; i < _colors.size() - 1; ++i) {
-    // to make sure it doesn't go out of boundary 
-      if(i+1 != _colors.size()){
       if (_colors[i] == DISK_LIGHT && _colors[i+1] == DISK_LIGHT)
         return false;
       else if (_colors[i] == DISK_DARK && _colors[i+1] == DISK_DARK)
         return false;
     }
-    }
+
     return true;
   }
 
@@ -177,61 +175,28 @@ sorted_disks sort_left_to_right(const disk_state& before) {
 sorted_disks sort_lawnmower(const disk_state& before) {
   // check that the input is in alternating format
   assert(before.is_alternating());
-  //Return after_ state along with the swap count
+  // Return after_ state along with the swap count
   // creating a disk state for after sorting by lawnmower
   disk_state after = before;
   int swap_count_after = 0;
+  
  // The lawnmower method to swap is repeated n/2 times
   for(int i = 0; i < after.light_count()/2; i++){
   // swaps disks from left to right
-<<<<<<< HEAD
-<<<<<<< HEAD
     for(int i = 0; i < after.total_count()-1; i++){
-      // n = 8
-      // 0, 1, 2 ,3 ,4, 5, 6,7 
-      // if i = 7, and i +1 == after.total_count() which is 8 then we do not run this block of code
-      if(i+1 != after.total_count()){
         if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
           after.swap(i);
           swap_count_after++;
         }
-      }
-=======
-=======
->>>>>>> parent of 5b44277... small fix
-  for(int i = 0; i < after.total_count()-1; i++){
-    if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
-      after.swap(i);
-      swap_count_after++;
-<<<<<<< HEAD
->>>>>>> parent of 5b44277... small fix
     }
-  }
   // swaps disks from right to left
-<<<<<<< HEAD
     for(int i = after.total_count()-2; i > 0; i--){
-
       if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
         after.swap(i);
         swap_count_after++;
       }
-
-=======
-=======
     }
-  }
-  // swaps disks from right to left
->>>>>>> parent of 5b44277... small fix
-  for(int i = after.total_count()-2; i > 0; i--){
-    if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
-      after.swap(i);
-      swap_count_after++;
-<<<<<<< HEAD
->>>>>>> parent of 5b44277... small fix
-=======
->>>>>>> parent of 5b44277... small fix
-    }
-  }
+    
   }
   return sorted_disks(after, swap_count_after);
 }
