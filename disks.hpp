@@ -185,6 +185,7 @@ sorted_disks sort_lawnmower(const disk_state& before) {
   for(int i = 0; i < after.light_count()/2; i++){
   // swaps disks from left to right
 <<<<<<< HEAD
+<<<<<<< HEAD
     for(int i = 0; i < after.total_count()-1; i++){
       // n = 8
       // 0, 1, 2 ,3 ,4, 5, 6,7 
@@ -196,10 +197,13 @@ sorted_disks sort_lawnmower(const disk_state& before) {
         }
       }
 =======
+=======
+>>>>>>> parent of 5b44277... small fix
   for(int i = 0; i < after.total_count()-1; i++){
     if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
       after.swap(i);
       swap_count_after++;
+<<<<<<< HEAD
 >>>>>>> parent of 5b44277... small fix
     }
   }
@@ -213,10 +217,18 @@ sorted_disks sort_lawnmower(const disk_state& before) {
       }
 
 =======
+=======
+    }
+  }
+  // swaps disks from right to left
+>>>>>>> parent of 5b44277... small fix
   for(int i = after.total_count()-2; i > 0; i--){
     if(after.get(i) == DISK_DARK && after.get(i+1) == DISK_LIGHT){
       after.swap(i);
       swap_count_after++;
+<<<<<<< HEAD
+>>>>>>> parent of 5b44277... small fix
+=======
 >>>>>>> parent of 5b44277... small fix
     }
   }
